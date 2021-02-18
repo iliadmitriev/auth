@@ -4,3 +4,4 @@ __pycache__/
 /static
 /locale/en/LC_MESSAGES/django.mo
 /locale/ru/LC_MESSAGES/django.mo
+/.coverage
