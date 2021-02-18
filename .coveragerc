@@ -1,0 +1,7 @@
+[run]
+source = .
+branch = True
+omit = 
+	auth/asgi.py
+	auth/wsgi.py
+	manage.py
