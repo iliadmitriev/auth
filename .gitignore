@@ -2,3 +2,5 @@ __pycache__/
 /db.sqlite3
 /.idea
 /static
+/locale/en/LC_MESSAGES/django.mo
+/locale/ru/LC_MESSAGES/django.mo
