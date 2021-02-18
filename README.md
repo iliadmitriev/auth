@@ -11,15 +11,23 @@ source venv/bin/activate
 ```shell
 pip install -r requirements.txt
 ```
-3. create a db (run migrations)
+3. generate new django secret key and put it into file .env
+```shell
+echo DJANGO_SECRET_KEY=\'$(python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')\'  >> .env
+```
+4. export variables from .env file
+```shell
+export $(cat .env | xargs)
+```
+5. create a db (run migrations)
 ```shell
 python3 manage.py migrate
 ```
-4. compile messages
+6. compile messages
 ```shell
 python3 manage.py compilemessages
 ```
-5. create superuser
+7. create superuser
 ```shell
 python3 manage.py createsuperuser
 ```
