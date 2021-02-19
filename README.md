@@ -96,6 +96,51 @@ open htmlcov/index.html
 ```
 ⚠️ coverage doesn't work when running test parallel under Windows and macOS
 
+
+# how to use
+
+1. register new account
+```shell
+curl -v -H 'Accept: application/json; indent=4' \
+  -H 'Content-Type: application/json' \
+  -d '
+    {
+        "email": "youremailbox@example.com",
+        "password": "yourpassword",
+        "password2": "yourpassword"
+    }' \
+    http://localhost:8000/auth/register/
+```
+2. get auth token
+```shell
+curl -v -H 'Accept: application/json; indent=4' \
+  -H 'Content-Type: application/json' \
+  -d '
+    {
+        "username": "youremailbox@example.com",
+        "password": "yourpassword"
+    }' \
+    http://localhost:8000/auth/token/
+```
+3. get restricted data using auth tocken
+```shell
+curl -v -H 'Accept: application/json; indent=4' \
+  -H 'Authorization: Bearer youraccessotoken' \
+  http://localhost:8000/auth/user/
+```
+4. refresh token
+```shell
+curl -v -H 'Accept: application/json; indent=4' \
+  -H 'Content-Type: application/json' \
+  -d '
+  {
+    "refresh": "your refresh token goes here"
+  }' \
+  http://localhost:8000/auth/token/refresh/
+```
+⚠️ by default token is expiring in 5 minutes, after that you will get message `Token is invalid or expired` with `403 Forbidden` http code
+
+
 # production
 
 ---
