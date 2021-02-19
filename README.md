@@ -211,5 +211,5 @@ docker exec -ti auth-api python3 manage.py migrate
 ```
 7. create super user
 ```shell
-docker exec -ti auth-api pyt hon3 manage.py createsuperuser
+docker exec -ti auth-api python3 manage.py createsuperuser
 ```
