@@ -213,3 +213,34 @@ docker exec -ti auth-api python3 manage.py migrate
 ```shell
 docker exec -ti auth-api python3 manage.py createsuperuser
 ```
+
+
+## docker-compose run
+
+1. create .env file with environment variables
+```shell
+DJANGO_SECRET_KEY='hr=2w^5-!vr0pv=2mjw^$g-*&=9=j%a_zwg5h1cq21inisqmd'
+POSTGRES_HOST=192.168.10.1
+POSTGRES_PORT=5432
+POSTGRES_DB=auth
+POSTGRES_USER=auth
+POSTGRES_PASSWORD=kO5sA8iB0cC3hH0a
+MEMCACHED_LOCATION=192.168.10.1:11211
+```
+2. run services
+interactively with logs
+```shell
+docker-compose up
+```
+or run services as daemons
+```shell
+docker-compose up -d
+```
+3. migrate
+```shell
+docker-compose exec api python3 manage.py migrate
+```
+4. create cuper user
+```shell
+docker-compose exec api python3 manage.py createsuperuser
+```
