@@ -147,11 +147,10 @@ curl -v -H 'Accept: application/json; indent=4' \
 
 ## prepare
 
-1. migrate
+1. migrate migrations
 ```shell
 python3 manage.py migrate --noinput
 ```
-
 2. collect static
 ```shell
 python3 manage.py collectstatic --noinput
@@ -174,4 +173,43 @@ pip install uWSGI
 2. Run
 ```shell
 uwsgi --ini uwsgi.ini
+```
+
+## Docker
+
+### Build image
+
+1. create .env file with environment variables
+```shell
+DJANGO_SECRET_KEY='hr=2w^5-!vr0pv=2mjw^$g-*&=9=j%a_zwg5h1cq21inisqmd'
+POSTGRES_HOST=auth.idm.dev
+POSTGRES_PORT=5432
+POSTGRES_DB=auth
+POSTGRES_USER=auth
+POSTGRES_PASSWORD=kO5sA8iB0cC3hH0a
+MEMCACHED_LOCATION=auth.idm.dev:11211
+```
+2. build docker image
+```shell
+docker build -t auth ./
+```
+3. create postgres instance
+```shell
+docker run -d -p 5432:5432 --name auth-postgres --env-file .env postgres:13.2-alpine
+```
+4. create memcached instance
+```shell
+docker run -d -p 11211:11211 --name auth-memcached --env-file .env memcached:alpine
+```
+5. create auth instance
+```shell
+docker run -d -p 8000:8000 --name auth-api --env-file .env auth
+```
+6. run migrations
+```shell
+docker exec -ti auth-api python3 manage.py migrate
+```
+7. create super user
+```shell
+docker exec -ti auth-api pyt hon3 manage.py createsuperuser
 ```
