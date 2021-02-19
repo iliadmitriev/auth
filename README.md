@@ -11,10 +11,16 @@ source venv/bin/activate
 ```shell
 pip install -r requirements.txt
 ```
-3. generate new django secret key and put it into file .env
+3. put django secret key into file .env
+generate DJANGO_SECRET_KEY
 ```shell
 echo DJANGO_SECRET_KEY=\'$(python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')\'  >> .env
 ```
+or just create test
+```shell
+echo DJANGO_SECRET_KEY=testsecretkey  >> .env
+```
+
 4. export variables from .env file
 ```shell
 export $(cat .env | xargs)
@@ -181,12 +187,12 @@ uwsgi --ini uwsgi.ini
 
 1. create .env file with environment variables
 ```shell
-DJANGO_SECRET_KEY='hr=2w^5-!vr0pv=2mjw^$g-*&=9=j%a_zwg5h1cq21inisqmd'
+DJANGO_SECRET_KEY=testsecretkey
 POSTGRES_HOST=192.168.10.1
 POSTGRES_PORT=5432
 POSTGRES_DB=auth
 POSTGRES_USER=auth
-POSTGRES_PASSWORD=kO5sA8iB0cC3hH0a
+POSTGRES_PASSWORD=authsecret
 MEMCACHED_LOCATION=192.168.10.1:11211
 ```
 2. build docker image
@@ -219,12 +225,12 @@ docker exec -ti auth-api python3 manage.py createsuperuser
 
 1. create .env file with environment variables
 ```shell
-DJANGO_SECRET_KEY='hr=2w^5-!vr0pv=2mjw^$g-*&=9=j%a_zwg5h1cq21inisqmd'
+DJANGO_SECRET_KEY=testsecretkey
 POSTGRES_HOST=192.168.10.1
 POSTGRES_PORT=5432
 POSTGRES_DB=auth
 POSTGRES_USER=auth
-POSTGRES_PASSWORD=kO5sA8iB0cC3hH0a
+POSTGRES_PASSWORD=authsecret
 MEMCACHED_LOCATION=192.168.10.1:11211
 ```
 2. run services
