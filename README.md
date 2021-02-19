@@ -182,12 +182,12 @@ uwsgi --ini uwsgi.ini
 1. create .env file with environment variables
 ```shell
 DJANGO_SECRET_KEY='hr=2w^5-!vr0pv=2mjw^$g-*&=9=j%a_zwg5h1cq21inisqmd'
-POSTGRES_HOST=auth.idm.dev
+POSTGRES_HOST=192.168.10.1
 POSTGRES_PORT=5432
 POSTGRES_DB=auth
 POSTGRES_USER=auth
 POSTGRES_PASSWORD=kO5sA8iB0cC3hH0a
-MEMCACHED_LOCATION=auth.idm.dev:11211
+MEMCACHED_LOCATION=192.168.10.1:11211
 ```
 2. build docker image
 ```shell
