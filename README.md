@@ -240,7 +240,7 @@ docker-compose up -d
 ```shell
 docker-compose exec api python3 manage.py migrate
 ```
-4. create cuper user
+4. create super user
 ```shell
 docker-compose exec api python3 manage.py createsuperuser
 ```
