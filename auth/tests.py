@@ -1,6 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
+from django.contrib.auth.models import User
+from django.conf import settings
+import jwt
 
 
 class UserDetailViewSetTest(TestCase):
@@ -53,3 +56,34 @@ class UserDetailViewSetTest(TestCase):
             }
         )
         self.assertEqual(reg.status_code, 400)
+
+
+class TokenSuperUserViewSetTest(TestCase):
+    api_client = APIClient()
+
+    def test_generate_token_for_superuser(self):
+        password = 'secret_password'
+        login = 'adminuser'
+        User.objects.create_superuser(login, 'myemail@exampler.com', password)
+        admin_token = self.api_client.post(
+            reverse('token_obtain_pair'),
+            {
+                'username': login,
+                'password': password
+            }
+        )
+        self.assertEqual(admin_token.status_code, 200)
+        self.assertIn('access', admin_token.data)
+        access_token = admin_token.data['access']
+        decoded_payload = jwt.decode(access_token, settings.SECRET_KEY, ['HS256'])
+        self.assertIn('scope', decoded_payload)
+        self.assertEqual(decoded_payload['scope'], 'admin')
+        self.api_client.credentials(
+            HTTP_AUTHORIZATION='Bearer %s' % access_token
+        )
+        response = self.api_client.get(reverse('user_detail'))
+        self.assertEqual(response.status_code, 200)
+        self.api_client.credentials()
+
+
+
