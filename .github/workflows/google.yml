@@ -13,15 +13,18 @@
 name: Build and Deploy to GKE
 
 on:
-  release:
-    types: [created]
+  push
+
+#on:
+#  release:
+#    types: [created]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: cluster-1    # TODO: update to cluster name
-  GKE_ZONE: us-central1-c   # TODO: update to cluster zone
-  DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
-  IMAGE: static-site
+  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
+  DEPLOYMENT_NAME: auth-deployment # TODO: update to deployment name
+  IMAGE: auth
 
 jobs:
   setup-build-publish-deploy:
