@@ -20,13 +20,13 @@ spec:
         app: auth-1
     spec:
       containers:
-        - env:
-            - name: DJANGO_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: DJANGO_SECRET_KEY
-                  name: auth-dj-secret-key
-        name: auth-01
+      - env:
+          - name: DJANGO_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: DJANGO_SECRET_KEY
+                name: auth-dj-secret-key
+        name: auth-sha256-01
         image: gcr.io/PROJECT_ID/IMAGE:TAG
 ---
 apiVersion: autoscaling/v2beta1
