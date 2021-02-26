@@ -51,8 +51,22 @@ spec:
               secretKeyRef:
                 key: POSTGRES_PASSWORD
                 name: auth-db-credentials
+        volumeMounts:
+          - mountPath: "/app/tls"
+            name: auth-tls
+            readOnly: true
+          - mountPath: "/app/server-ca"
+            name: server-ca
+            readOnly: true
         name: auth-sha256-01
         image: gcr.io/PROJECT_ID/IMAGE:TAG
+      volumes:
+        - name: auth-tls
+          secret:
+            secretName: auth-db-secret-key-cert
+        - name: server-ca
+          secret:
+            secretName: auth-db-secret-server-ca
 ---
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
