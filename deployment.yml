@@ -26,6 +26,31 @@ spec:
               secretKeyRef:
                 key: DJANGO_SECRET_KEY
                 name: auth-dj-secret-key
+          - name: POSTGRES_HOST
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_HOST
+                name: auth-db-credentials
+          - name: POSTGRES_PORT
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PORT
+                name: auth-db-credentials
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_DB
+                name: auth-db-credentials
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_USER
+                name: auth-db-credentials
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRES_PASSWORD
+                name: auth-db-credentials
         name: auth-sha256-01
         image: gcr.io/PROJECT_ID/IMAGE:TAG
 ---
