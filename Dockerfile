@@ -16,6 +16,7 @@ RUN apk add --no-cache \
             python3 py3-pip py3-wheel gettext mailcap \
             uwsgi uwsgi-python3 uwsgi-http \
             py3-psycopg2 \
+            postgresql-client \
     && pip install -r requirements.txt \
     && rm -rf /root/.cache/ \
     && chown -R $USER:$USER $APP_HOME
