@@ -1,12 +1,10 @@
 # Auth
----
+
 ![CI tests](https://github.com/iliadmitriev/auth/actions/workflows/python-app.yml/badge.svg?branch=master)
 
 JWT auth service build using Django, Simple JWT, DRF
 
 # install
-
----
 
 1. install python3 and create virtual env
 ```shell
