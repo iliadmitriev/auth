@@ -35,3 +35,12 @@ jobs:
       run: |
         coverage run --source='.' manage.py test --verbosity=2
         coverage report -m --fail-under=100
+        coverage xml -o coverage.xml
+        
+    - uses: codecov/codecov-action@v2
+      token: ${{ secrets.CODECOV_TOKEN }}
+      files: ./coverage.xml
+      flags: unittests
+      name: codecov-umbrella
+      fail_ci_if_error: true
+      verbose: true
