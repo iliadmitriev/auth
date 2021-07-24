@@ -1,6 +1,7 @@
 # Auth
 
 ![CI tests](https://github.com/iliadmitriev/auth/actions/workflows/python-app.yml/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/iliadmitriev/auth/branch/master/graph/badge.svg?token=5J4G4NH0XA)](https://codecov.io/gh/iliadmitriev/auth)
 
 JWT auth service build using Django, Simple JWT, DRF
 
