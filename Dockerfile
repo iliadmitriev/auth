@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.14
 
 ENV PYTHONUNBUFFERED True
 
@@ -13,10 +13,19 @@ WORKDIR $APP_HOME
 COPY --chown=$USER requirements.txt $APP_HOME/
 
 RUN apk add --no-cache \
-            python3 py3-pip py3-wheel gettext mailcap \
-            uwsgi uwsgi-python3 uwsgi-http \
-            py3-psycopg2 \
-    && pip install -r requirements.txt \
+                python3 \
+                postgresql-libs icu-libs libpq \
+                py3-pip \
+                py3-wheel \
+                gettext \
+                mailcap \
+    && apk add --no-cache --virtual .build-deps \
+                build-base \
+                python3-dev \
+                postgresql-dev \
+                linux-headers \
+    && pip install --no-cache-dir --ignore-installed six -r requirements.txt \
+    && apk del .build-deps \
     && rm -rf /root/.cache/ \
     && chown -R $USER:$USER $APP_HOME
 
@@ -27,10 +36,8 @@ USER $USER
 RUN python3 manage.py compilemessages \
     && python3 manage.py collectstatic --noinput
 
-RUN coverage run manage.py test --verbosity 2 \
-    && coverage report -m --fail-under=100 \
-    && coverage erase
-
 EXPOSE 8000
+
+STOPSIGNAL SIGINT
 
 CMD exec uwsgi --ini uwsgi.ini
