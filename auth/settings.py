@@ -74,8 +74,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'auth.wsgi.application'
 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if not environ.get('POSTGRES_HOST'):
     DATABASES = {
