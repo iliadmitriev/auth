@@ -21,7 +21,7 @@ generate DJANGO_SECRET_KEY
 ```shell
 echo DJANGO_SECRET_KEY=\'$(python3 -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())')\'  >> .env
 ```
-or just create test
+or just create test secret key (don't do this in production)
 ```shell
 echo DJANGO_SECRET_KEY=testsecretkey  >> .env
 ```
