@@ -30,15 +30,22 @@ echo DJANGO_SECRET_KEY=testsecretkey  >> .env
 ```shell
 export $(cat .env | xargs)
 ```
-5. create a db (run migrations)
+5. create services postgres and memcached
+```shell
+docker run -d --name auth-postgres --hostname auth-postgres \
+    -p 5432:5432 --env-file .env postgres:14-alpine
+    
+docker run -d -p 11211:11211 --name auth-memcached memcached:alpine
+```
+6. create a db (run migrations)
 ```shell
 python3 manage.py migrate
 ```
-6. compile messages
+7. compile messages
 ```shell
 python3 manage.py compilemessages
 ```
-7. create superuser
+8. create superuser
 ```shell
 python3 manage.py createsuperuser
 ```
