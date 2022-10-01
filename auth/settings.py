@@ -164,7 +164,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('user_detail')
 if environ.get('MEMCACHED_LOCATION'):
     CACHES = {
         'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+            'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
             'LOCATION': environ.get('MEMCACHED_LOCATION'),
         }
     }

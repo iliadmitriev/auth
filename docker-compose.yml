@@ -14,11 +14,13 @@ services:
 
   memchached:
     image: library/memcached:alpine
+    hostname: memcached
     ports:
       - "11211:11211"
 
   postgres:
     image: library/postgres:13.2-alpine
+    hostname: postgres
     ports:
       - "5432:5432"
     env_file:
@@ -28,3 +30,4 @@ services:
 
 volumes:
   pgdata: {}
+
