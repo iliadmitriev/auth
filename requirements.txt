@@ -3,7 +3,7 @@ attrs==22.1.0
 coverage==6.5.0
 Django==4.1.2
 djangorestframework==3.14.0
-djangorestframework-simplejwt==5.2.0
+djangorestframework-simplejwt==5.2.1
 drf-spectacular==0.24.2
 inflection==0.5.1
 jsonschema==4.16.0
