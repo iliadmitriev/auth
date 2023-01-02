@@ -1,6 +1,6 @@
 asgiref==3.5.2
 attrs==22.2.0
-coverage==7.0.1
+coverage==7.0.2
 Django==4.1.4
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.0
