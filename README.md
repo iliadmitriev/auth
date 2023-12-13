@@ -5,6 +5,8 @@
 
 JWT auth service built using Django, Simple JWT, DRF
 
+Minimal Python version `3.10`
+
 # install
 
 1. install python3 and create virtual env
