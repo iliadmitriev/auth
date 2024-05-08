@@ -42,7 +42,7 @@ jobs:
       run: |
         coverage run --source='.' manage.py test --verbosity=2
         coverage xml -o coverage.xml        
-    - uses: codecov/codecov-action@v2
+    - uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage.xml
