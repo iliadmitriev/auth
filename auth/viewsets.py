@@ -32,13 +32,12 @@ class ScopeTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        token['username'] = user.username
+        token["username"] = user.username
         if user.is_staff or user.is_superuser:
-            token['scope'] = 'admin'
+            token["scope"] = "admin"
 
         return token
 
 
 class ScopeTokenObtainPairView(TokenObtainPairView):
     serializer_class = ScopeTokenObtainPairSerializer
-
