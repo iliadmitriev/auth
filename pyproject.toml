@@ -13,7 +13,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "coverage>=7.14.1",
+    "coverage>=7.14.2",
     "pre-commit>=4.6.0",
     "pre-commit-hooks>=5.0.0",
     "ruff>=0.15.18",
