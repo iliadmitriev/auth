@@ -16,7 +16,7 @@ dev = [
     "coverage>=7.14.3",
     "pre-commit>=4.6.0",
     "pre-commit-hooks>=5.0.0",
-    "ruff>=0.15.19",
+    "ruff>=0.15.20",
 ]
 
 [tool.ruff]
